@@ -4,19 +4,19 @@
 
 using namespace std;
 
-Ceh::Ceh():name(NULL),director(NULL),workers(0) {
+Ceh::Ceh():name(""),director(""),workers(0) {
 	cout << "simple create\n";
 }
-Ceh::Ceh(char* name, char* director, int workers) : name(name), director(director), workers(workers) {
+Ceh::Ceh(const char* name, const char* director, int workers) {
 	cout << "Constructor with params\n";
-	/*this->name = name;
-	this->director = director;
-	this->workers = workers;*/
+	strcpy_s(this->name, name);
+	strcpy_s(this->director, director);
+	this->workers = workers;
 }
-Ceh::Ceh(const Ceh& ceh) {
+Ceh::Ceh(const const Ceh& ceh) {
 	cout << "Construct-copy: " << ceh.name << endl;
-	this->name = ceh.name;
-	this->director = ceh.director;
+	strcpy_s(this->name, ceh.name);
+	strcpy_s(this->director, ceh.director);
 	this->workers = ceh.workers;
 }
 Ceh::~Ceh() {
@@ -34,13 +34,13 @@ int Ceh::getWorkersCount() {
 	return this->workers;
 }
 
-void Ceh::setName(char* name) {
+void Ceh::setName(const char* name) {
 	cout << "setName:   " << name << endl;
-	this->name = name;
+	strcpy_s(this->name, name);
 }
-void Ceh::setDirector(char* director) {
+void Ceh::setDirector(const char* director) {
 	cout << "setDirector:   " << director << endl;
-	this->director = director;
+	strcpy_s(this->director, director);
 }
 void Ceh::setWorkerCount(int count) {
 	cout << "setWorkerCount:   " << count << endl;

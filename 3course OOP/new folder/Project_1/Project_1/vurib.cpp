@@ -1,7 +1,9 @@
 #include "stdafx.h";
 #include <iostream>;
 #include "vurib.h";
+
 using namespace std;
+
 vurib::vurib() :name(""), shufr(""), kilk(0)
 {
 	cout << "vuklukano konstruktor bez parametriv" << this << endl;

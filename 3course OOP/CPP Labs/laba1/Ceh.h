@@ -2,13 +2,13 @@
 class Ceh
 {
 private:
-	char* name;
-	char* director;
+	char name[30];
+	char director[30];
 	int workers;
 
 public:
 	Ceh();
-	Ceh(char* name, char* director, int workers);
+	Ceh(const char* name, const char* director, int workers);
 	Ceh(const Ceh&);
 	~Ceh();
 
@@ -16,8 +16,8 @@ public:
 	char* getDirector();
 	int getWorkersCount();
 
-	void setName(char*);
-	void setDirector(char*);
+	void setName(const char*);
+	void setDirector(const char*);
 	void setWorkerCount(int);
 	void showAllParams();
 };
