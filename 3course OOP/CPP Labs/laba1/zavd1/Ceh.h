@@ -19,6 +19,7 @@ public:
 	void setName(const char*);
 	void setDirector(const char*);
 	void setWorkerCount(int);
+
 	void showAllParams();
 };
 
