@@ -18,9 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Ceh.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ceh.h">
+    <ClInclude Include="Ceh.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
