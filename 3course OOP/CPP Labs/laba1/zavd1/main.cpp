@@ -9,19 +9,23 @@ void space() {
 
 int main()
 {
-	Ceh ceh1 = Ceh();
+	Ceh ceh1;
 	Ceh ceh2 = Ceh("hztp", "Ghans V. G.", 23);
-	Ceh ceh3 = Ceh(ceh2);
+	Ceh ceh3;
 
 	space();
-	cout << "ceh2 SHOW\n";
+	cout << "SHOW ceh2\n";
 	ceh2.showAllParams();
 
+	ceh3 = Ceh(ceh2);
+	cout << "SHOW ceh3\n";
+	ceh3.showAllParams();
+
 	space();
-	cout << "GETTERS(ceh2)"
-		<< "Name = " << ceh2.getName()
-		<< "Director = " << ceh2.getDirector()
-		<< "Workers = " << ceh2.getWorkersCount();
+	cout << "GETTERS(ceh2)" << endl
+		<< "Name = " << ceh2.getName() << endl
+		<< "Director = " << ceh2.getDirector() << endl
+		<< "Workers = " << ceh2.getWorkersCount() << endl;
 
 	space();
 	cout << "SETTERS\n";
@@ -29,15 +33,12 @@ int main()
 	ceh1.setName("hrd");
 	ceh1.setDirector("Porg R. A.");
 	ceh1.setWorkerCount(12);
-
-	cout << "ceh3\n";
-	ceh3.setWorkerCount(30);
-
-	space();
-	cout << "ceh1 SHOW\n";
 	ceh1.showAllParams();
 
-	space();
-	cout << "ceh3 SHOW\n";
+	cout << "\nceh3\n";
+	ceh3.setWorkerCount(30);
+
+	cout << "SHOW ceh3\n";
 	ceh3.showAllParams();
+	space();
 }
