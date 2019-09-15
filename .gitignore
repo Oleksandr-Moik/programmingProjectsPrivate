@@ -1,0 +1,15 @@
+#Gitignore in 3course/OOP
+*/.vs
+*/Debug
+
+*/*/.vs
+*/*/Debug
+
+*/*/*/.vs
+*/*/*/Debug
+
+*/*/*/*/.vs
+*/*/*/*/Debug
+
+*/*/*/*/*/.vs
+*/*/*/*/*/Debug
