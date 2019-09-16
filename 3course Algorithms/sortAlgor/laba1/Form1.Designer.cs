@@ -158,7 +158,6 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "sorting";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

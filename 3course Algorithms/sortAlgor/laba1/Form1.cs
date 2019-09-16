@@ -25,9 +25,8 @@ namespace laba1
         };
 
         info temp;
-        info[] arrayOfData = new info[1];
+        info[] arrayOfData;// = new info[1];
         int n = 0; // кількість записів
-        bool is_save_chaged = true; // чи були зміни у записах
 
         // читання записів з файлу
         private void readFromFileIntoDataGrid(object sender, EventArgs e)
@@ -45,7 +44,6 @@ namespace laba1
                         dataGridView1.Rows[n].Cells[i].Value = br.ReadString();
                     n++;
                 }
-                is_save_chaged = true;
                 br.Close();
 
                 // формування масиву
@@ -75,7 +73,6 @@ namespace laba1
                     bw.Write(Convert.ToString(dataGridView1.Rows[i].Cells[2].Value));
                     bw.Write(Convert.ToString(dataGridView1.Rows[i].Cells[3].Value));
                 }
-                is_save_chaged = true;
                 bw.Close();
             }
         }
@@ -93,36 +90,6 @@ namespace laba1
                 dataGridView1.Rows[j].Cells[2].Value = arrayOfData[j].address;
                 dataGridView1.Rows[j].Cells[3].Value = arrayOfData[j].tel;
             }
-        }
-
-        // підтвердження виходу
-        private bool CloseForm()
-        {
-            var result = MessageBox.Show("Ви дійсно хочете завершити роботу з програмою?",
-                    "Підтвердження виходу", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                if (!is_save_chaged) saveChanges();
-                return true;
-            }
-            else return false;
-        }
-
-        // запит на збереження даних
-        private void saveChanges()
-        {
-            var result = MessageBox.Show("Де-які записи були відредаговані або видалені, зберегти зміни у файл?",
-                "Зберегти зміни?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.OK)
-            {
-                saveFileDialog1.ShowDialog();
-            }
-        }
-
-        // обробник закриття форми
-        private void formClosing(object sender, FormClosingEventArgs e)
-        {
-            if (CloseForm() == false) e.Cancel = true;
         }
 
         // сортування бульбашкою (від А до Я)
