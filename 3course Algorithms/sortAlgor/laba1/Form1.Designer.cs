@@ -140,10 +140,10 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(152, 38);
             this.button5.TabIndex = 0;
-            this.button5.Text = "buble sort";
+            this.button5.Text = "select sort";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Visible = false;
-            this.button5.Click += new System.EventHandler(this.buble_sort);
+            this.button5.Click += new System.EventHandler(this.select_sort);
             // 
             // Form1
             // 

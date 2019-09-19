@@ -45,17 +45,7 @@ namespace laba1
                     n++;
                 }
                 br.Close();
-
-                // формування масиву
-                arrayOfData = new info[n];
-                for (int i = 0; i < n; i++)
-                {
-                    arrayOfData[i].prizv = Convert.ToString(dataGridView1.Rows[i].Cells[0].Value);
-                    arrayOfData[i].imja = Convert.ToString(dataGridView1.Rows[i].Cells[1].Value);
-                    arrayOfData[i].address = Convert.ToString(dataGridView1.Rows[i].Cells[2].Value);
-                    arrayOfData[i].tel = Convert.ToString(dataGridView1.Rows[i].Cells[3].Value);
-                }
-                MessageBox.Show("Файл завантажено!\nЗчитано " + n + " записів", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                updateArray();
             }
         }
 
@@ -74,6 +64,7 @@ namespace laba1
                     bw.Write(Convert.ToString(dataGridView1.Rows[i].Cells[3].Value));
                 }
                 bw.Close();
+                updateArray();
             }
         }
 
@@ -81,14 +72,34 @@ namespace laba1
         private void updateDataGrid()
         {
             dataGridView1.Rows.Clear();
-            if (n != 0) dataGridView1.Rows.Add(n);
-            //else dataGridView1.Rows.Add();
-            for (int j = 0; j < n; j++)
+            if (n > 0)
             {
-                dataGridView1.Rows[j].Cells[0].Value = arrayOfData[j].prizv;
-                dataGridView1.Rows[j].Cells[1].Value = arrayOfData[j].imja;
-                dataGridView1.Rows[j].Cells[2].Value = arrayOfData[j].address;
-                dataGridView1.Rows[j].Cells[3].Value = arrayOfData[j].tel;
+                dataGridView1.Rows.Add(n);
+                for (int j = 0; j < n; j++)
+                {
+                    dataGridView1.Rows[j].Cells[0].Value = arrayOfData[j].prizv;
+                    dataGridView1.Rows[j].Cells[1].Value = arrayOfData[j].imja;
+                    dataGridView1.Rows[j].Cells[2].Value = arrayOfData[j].address;
+                    dataGridView1.Rows[j].Cells[3].Value = arrayOfData[j].tel;
+                }
+            }
+        }
+
+        // оновлення полів в масиві
+        private void updateArray()
+        {
+            int rows = dataGridView1.Rows.Count;
+            if (rows > 1)
+            {
+                n = rows - 1;
+                arrayOfData = new info[n];
+                for (int i = 0; i < n; i++)
+                {
+                    arrayOfData[i].prizv = Convert.ToString(dataGridView1.Rows[i].Cells[0].Value);
+                    arrayOfData[i].imja = Convert.ToString(dataGridView1.Rows[i].Cells[1].Value);
+                    arrayOfData[i].address = Convert.ToString(dataGridView1.Rows[i].Cells[2].Value);
+                    arrayOfData[i].tel = Convert.ToString(dataGridView1.Rows[i].Cells[3].Value);
+                }
             }
         }
 
@@ -134,14 +145,20 @@ namespace laba1
                 {
                     if (string.Compare(arrayOfData[j].prizv, arrayOfData[j - 1].prizv) < 0)
                     {
-                        temp = arrayOfData[j - 1];
-                        arrayOfData[j - 1] = arrayOfData[j];
-                        arrayOfData[j] = temp;
+                        temp = arrayOfData[j];
+                        arrayOfData[j] = arrayOfData[j - 1];
+                        arrayOfData[j - 1] = temp;
                         b = true;
                     }
                 }
-            } while (!b);
+            } while (b);
             updateDataGrid();
+        }
+
+
+        private void select_sort(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,7 +1,5 @@
 #include "Ceh.h"
-
 #include <iostream>
-
 using namespace std;
 
 Ceh::Ceh() :name(""), director(""), workers(0) {

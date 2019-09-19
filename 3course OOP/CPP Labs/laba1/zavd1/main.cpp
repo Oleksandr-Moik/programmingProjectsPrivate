@@ -1,22 +1,16 @@
 #include <iostream>
 #include "Ceh.h"
-
 using namespace std;
 
-void space() {
-	cout << "\n\n";
-}
+void space() { cout << "\n\n"; }
 
-int main()
-{
-	Ceh ceh1;
+int main(){
+	Ceh ceh1, ceh3;
 	Ceh ceh2 = Ceh("hztp", "Ghans V. G.", 23);
-	Ceh ceh3;
 
 	space();
 	cout << "SHOW ceh2\n";
 	ceh2.showAllParams();
-
 	ceh3 = Ceh(ceh2);
 	cout << "SHOW ceh3\n";
 	ceh3.showAllParams();
@@ -37,7 +31,6 @@ int main()
 
 	cout << "\nceh3\n";
 	ceh3.setWorkerCount(30);
-
 	cout << "SHOW ceh3\n";
 	ceh3.showAllParams();
 	space();
