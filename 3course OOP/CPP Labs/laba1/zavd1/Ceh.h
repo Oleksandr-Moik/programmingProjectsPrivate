@@ -8,8 +8,8 @@ private:
 
 public:
 	Ceh();
-	Ceh(const char* name, const char* director, int workers);
-	Ceh(const Ceh&);
+	Ceh(const char*, const char*, int);
+	//Ceh(const Ceh&);
 	~Ceh();
 
 	char* getName();

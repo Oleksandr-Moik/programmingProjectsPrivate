@@ -15,6 +15,9 @@ namespace laba1
         public Ceh()
         {
             Console.WriteLine("Simple create");
+            name = "";
+            director = "";
+            workers = 0;
         }
         public Ceh(string name, string director, int workers)
         {
@@ -23,18 +26,12 @@ namespace laba1
             this.director = director;
             this.workers = workers;
         }
-
         public Ceh(Ceh ceh)
         {
             Console.WriteLine("Construct-copy");
             this.name = ceh.name;
             this.director = ceh.director;
             this.workers = ceh.workers;
-        }
-        ~Ceh()
-        {
-            Console.WriteLine("DELETED:  ");
-            this.showAllParams();
         }
 
         public string getName()
@@ -63,11 +60,10 @@ namespace laba1
             this.workers = count;
         }
 
-        public void showAllParams()
-        {
-            Console.WriteLine("Ceh value:");
-            Console.WriteLine(String.Format("[Name = {0}, Director = {1}, Workers = {2}]", this.name, this.director, this.workers));
+        public void showAllParams(){
+            Console.WriteLine(
+                String.Format("Name={0}, Director={1}, Workers={2}",
+                this.name, this.director, this.workers));
         }
-
     }
 }

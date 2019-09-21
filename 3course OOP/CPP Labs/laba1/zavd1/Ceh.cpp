@@ -1,5 +1,6 @@
 #include "Ceh.h"
 #include <iostream>
+
 using namespace std;
 
 Ceh::Ceh() :name(""), director(""), workers(0) {
@@ -11,14 +12,14 @@ Ceh::Ceh(const char* name, const char* director, int workers) {
 	strcpy_s(this->director, director);
 	this->workers = workers;
 }
-Ceh::Ceh(const Ceh& ceh) {
-	cout << "Construct-copy\n";
-	strcpy_s(this->name, ceh.name);
-	strcpy_s(this->director, ceh.director);
-	this->workers = ceh.workers;
-}
+//Ceh::Ceh(const Ceh& ceh) {
+//	cout << "Construct-copy\n";
+//	strcpy_s(this->name, ceh.name);
+//	strcpy_s(this->director, ceh.director);
+//	this->workers = ceh.workers;
+//}
 Ceh::~Ceh() {
-	cout << "DELETED:  \n";
+	cout << "DELETED: \t";
 	this->showAllParams();
 }
 
@@ -43,8 +44,6 @@ void Ceh::setWorkerCount(int count) {
 }
 
 void Ceh::showAllParams() {
-	cout << "Ceh values: "
-		<< "[Name = " << this->name
-		<< "], [Director = " << this->director
-		<< "], [Workers = " << this->workers << "]\n";
+	printf("Name=%s, Director=%s, Workers=%d\n",
+		this->name, this->director, this->workers);
 }

@@ -1,28 +1,24 @@
-#pragma once
 class DateTime
 {
 private:
-	short int day;
-	short int month;
-	int year;
-
-
+	unsigned short int day;
+	unsigned short int month;
+	unsigned int year;
 public:
 	DateTime();
-	DateTime(short int, short int, int);
-	DateTime(const DateTime&);
-	~DateTime() {};
-
-	int getDay();
-	int getMonth();
+	DateTime(unsigned short int d, unsigned short int m, unsigned int y);
+	~DateTime();
+	
+	void setAll(unsigned short int d, unsigned short int m, unsigned int y);
+	
 	int getYear();
-
-
-	void setDay(short int);
-	void setMonth(short int);
-	void setYear(int);
-	DateTime inputData();
-
-	void printTime();
+	int getMounth();
+	int getDay();
+	
+	DateTime nextDay(DateTime ob);
+	DateTime previousDay(DateTime ob);
+	int countEndDays();
+	
+	DateTime inputDate();
+	void showDate();
 };
-
