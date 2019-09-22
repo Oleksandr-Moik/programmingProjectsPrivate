@@ -155,10 +155,23 @@ namespace laba1
             updateDataGrid();
         }
 
-
-        private void select_sort(object sender, EventArgs e)
+        // сортування вставками (включеннями)
+        private void inserts_sort(object sender, EventArgs e)
         {
-
+            for (int i = 0; i < n; i++)
+            {
+                info el = arrayOfData[i];
+                int j = i;
+                while (j > 0 && (string.Compare(arrayOfData[j - 1].prizv, el.prizv) > 0))
+                {
+                    temp = arrayOfData[j];
+                    arrayOfData[j] = arrayOfData[j - 1];
+                    arrayOfData[j - 1] = temp;
+                    j--;
+                }
+                arrayOfData[j] = el;
+            }
+            updateDataGrid();
         }
     }
 }
