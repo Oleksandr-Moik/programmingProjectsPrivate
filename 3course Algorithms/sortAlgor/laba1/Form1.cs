@@ -155,6 +155,30 @@ namespace laba1
             updateDataGrid();
         }
 
+        // сортування мін елементами
+        private void minElem_sort(object sender, EventArgs e)
+        {
+            int min;
+            for(int i = 0; i < n; i++)
+            {
+                min = i;
+                for (int j=i+1;j<n;j++)
+                {
+                    if (String.Compare(arrayOfData[j].prizv, arrayOfData[min].prizv) < 0)
+                    {
+                        min = j;
+                    }
+                }
+                if (min != i)
+                {
+                    temp = arrayOfData[i];
+                    arrayOfData[i] = arrayOfData[min];
+                    arrayOfData[min] = temp;
+                }
+            }
+            updateDataGrid();
+        }
+
         // сортування вставками (включеннями)
         private void inserts_sort(object sender, EventArgs e)
         {
