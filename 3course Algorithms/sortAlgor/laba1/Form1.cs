@@ -165,9 +165,7 @@ namespace laba1
                 for (int j=i+1;j<n;j++)
                 {
                     if (String.Compare(arrayOfData[j].prizv, arrayOfData[min].prizv) < 0)
-                    {
                         min = j;
-                    }
                 }
                 if (min != i)
                 {
