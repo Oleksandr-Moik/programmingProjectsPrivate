@@ -13,11 +13,6 @@ namespace laba1
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
         // глобальні змінни та структура
         struct info
         {
@@ -31,39 +26,46 @@ namespace laba1
             // if this < a => -1
         };
 
-        info temp;
-        info[] arrayOfData;// = new info[1];
-        int n = 0; // кількість записів
+        info[] arrayOfData; // масив записів
+        int n; // кількість записів
+
+        public Form1()
+        {
+            InitializeComponent();
+            n = 0;
+            arrayOfData = new info[n];
+            arrayToDataGrid();
+        }
 
         // читання записів з файлу
-        private void readFromFileIntoDataGrid(object sender, EventArgs e)
+        private void readFromFile(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 if (openFileDialog1.FileName == null) return;
                 BinaryReader br = new BinaryReader(new FileStream(openFileDialog1.FileName, FileMode.OpenOrCreate));
                 n = 0;
+                dataGridView1.Rows.Clear();
                 while (br.BaseStream.Position != br.BaseStream.Length)
                 {
                     dataGridView1.Rows.Add();
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 4; ++i)
                         dataGridView1.Rows[n].Cells[i].Value = br.ReadString();
                     n++;
                 }
                 br.Close();
-                updateArray();
+                dataGridToArray();
             }
         }
 
         // збереження записів у файл
-        private void saveInFileDataGridItems(object sender, EventArgs e)
+        private void writeToFile(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 if (saveFileDialog1.FileName == null) return;
                 BinaryWriter bw = new BinaryWriter(new FileStream(saveFileDialog1.FileName, FileMode.Create));
-                for (int i = 0; i < dataGridView1.RowCount - 1; i++)
+                for (int i = 0; i < dataGridView1.RowCount - 1; ++i)
                 {
                     bw.Write(Convert.ToString(dataGridView1.Rows[i].Cells[0].Value));
                     bw.Write(Convert.ToString(dataGridView1.Rows[i].Cells[1].Value));
@@ -71,18 +73,18 @@ namespace laba1
                     bw.Write(Convert.ToString(dataGridView1.Rows[i].Cells[3].Value));
                 }
                 bw.Close();
-                updateArray();
+                dataGridToArray();
             }
         }
 
         // оновлення полів в таблиці
-        private void updateDataGrid()
+        private void arrayToDataGrid()
         {
             dataGridView1.Rows.Clear();
             if (n > 0)
             {
                 dataGridView1.Rows.Add(n);
-                for (int j = 0; j < n; j++)
+                for (int j = 0; j < n; ++j)
                 {
                     dataGridView1.Rows[j].Cells[0].Value = arrayOfData[j].prizv;
                     dataGridView1.Rows[j].Cells[1].Value = arrayOfData[j].imja;
@@ -93,14 +95,13 @@ namespace laba1
         }
 
         // оновлення полів в масиві
-        private void updateArray()
+        private void dataGridToArray()
         {
-            int rows = dataGridView1.Rows.Count;
-            if (rows > 1)
+            this.n = dataGridView1.Rows.Count - 1;
+            if (n > 1)
             {
-                n = rows - 1;
                 arrayOfData = new info[n];
-                for (int i = 0; i < n; i++)
+                for (int i = 0; i < n; ++i)
                 {
                     arrayOfData[i].prizv = Convert.ToString(dataGridView1.Rows[i].Cells[0].Value);
                     arrayOfData[i].imja = Convert.ToString(dataGridView1.Rows[i].Cells[1].Value);
@@ -121,22 +122,18 @@ namespace laba1
         // сортування бульбашкою (від А до Я)
         private void buble_sort(object sender, EventArgs e)
         {
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; ++i)
             {
                 bool b = true;
-                for (int j = i + 1; j < n; j++)
-                {
+                for (int j = i + 1; j < n; ++j)
                     if (arrayOfData[i].compare(arrayOfData[j]) > 0)
                     {
-                        temp = arrayOfData[i];
-                        arrayOfData[i] = arrayOfData[j];
-                        arrayOfData[j] = temp;
+                        swap(ref arrayOfData[i], ref arrayOfData[j]);
                         b = false;
                     }
-                }
                 if (b) break;
             }
-            updateDataGrid();
+            arrayToDataGrid();
         }
 
         // шейкер-сортування
@@ -146,8 +143,8 @@ namespace laba1
             do
             {
                 b = false;
-                for (int j = 0; j < n - 1; j++)
-                    if (arrayOfData[j].compare(arrayOfData[j+1]) > 0)
+                for (int j = 0; j < n - 1; ++j)
+                    if (arrayOfData[j].compare(arrayOfData[j + 1]) > 0)
                     {
                         swap(ref arrayOfData[j], ref arrayOfData[j - 1]);
                         b = true;
@@ -156,23 +153,23 @@ namespace laba1
                     if (arrayOfData[j].compare(arrayOfData[j - 1]) < 0)
                         swap(ref arrayOfData[j], ref arrayOfData[j - 1]);
             } while (b);
-            updateDataGrid();
+            arrayToDataGrid();
         }
 
         // сортування мін елементами
         private void minElem_sort(object sender, EventArgs e)
         {
             int min;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n; ++i)
             {
                 min = i;
-                for (int j = i + 1; j < n; j++)
+                for (int j = i + 1; j < n; ++j)
                     if (arrayOfData[j].compare(arrayOfData[min]) < 0)
                         min = j;
                 if (min != i)
                     swap(ref arrayOfData[i], ref arrayOfData[min]);
             }
-            updateDataGrid();
+            arrayToDataGrid();
         }
 
         // сортування вставками (включеннями)
@@ -182,7 +179,7 @@ namespace laba1
                 for (int j = i; j > 0 && (arrayOfData[j].compare(arrayOfData[j - 1]) < 0); --j)
                     swap(ref arrayOfData[j - 1], ref arrayOfData[j]);
 
-            updateDataGrid();
+            arrayToDataGrid();
         }
 
         // агоритм Шелла
@@ -190,42 +187,46 @@ namespace laba1
         {
             for (int step = n / 2; step >= 1; step /= 2)
                 for (int i = step; i < n; ++i)
-                    for (int j = i; j > 0 && (arrayOfData[j].compare(arrayOfData[j - 1]) < 0); j-=step)
+                    for (int j = i; j > 0 && (arrayOfData[j].compare(arrayOfData[j - 1]) < 0); j -= step)
                         swap(ref arrayOfData[j - 1], ref arrayOfData[j]);
 
-            updateDataGrid();
+            arrayToDataGrid();
         }
 
         // швидке сортування
         private void qsort_Click(object sender, EventArgs e)
         {
-            qsort(arrayOfData, 0, n - 1);
+            qsort(0, n - 1);
 
-            updateDataGrid();
+            arrayToDataGrid();
         }
 
-        private void qsort(info []array, int start, int end)
+        private void qsort(int start, int end)
         {
-            if (start >= end)
-            {
-                return;
-            }
+            if (start >= end) return;
 
             int left = start, right = end;
-            info middle = array[(left + right) / 2];
+            info middle = arrayOfData[(left + right) / 2];
             while (left <= right)
             {
-                while (middle.compare(array[left]) > 0)
-                    left++;
-                while (middle.compare(array[right]) < 0)
-                    right--;
+                while (middle.compare(arrayOfData[left]) > 0)
+                    ++left;
+                while (middle.compare(arrayOfData[right]) < 0)
+                    --right;
 
                 if (left <= right)
-                    swap(ref array[left++], ref array[right--]);
+                    swap(ref arrayOfData[left++], ref arrayOfData[right--]);
             }
 
-            qsort(array, start, right);
-            qsort(array, left, end);
+            qsort(start, right);
+            qsort(left, end);
+        }
+
+
+        // сортування купою
+        private void heap_sort(object sender, EventArgs e)
+        {
+            return;
         }
     }
 }
