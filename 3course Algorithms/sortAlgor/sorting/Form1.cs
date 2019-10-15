@@ -22,6 +22,13 @@ namespace laba1
         struct info
         {
             public string prizv, imja, address, tel;
+            public int compare(info a)
+            {
+                return string.Compare(this.prizv, a.prizv);
+            }
+            // if this > a => 1
+            // if this == a => 0
+            // if this < a => -1
         };
 
         info temp;
@@ -103,6 +110,14 @@ namespace laba1
             }
         }
 
+        // swap
+        private void swap(ref info a, ref info b)
+        {
+            info c = a;
+            a = b;
+            b = c;
+        }
+
         // сортування бульбашкою (від А до Я)
         private void buble_sort(object sender, EventArgs e)
         {
@@ -111,7 +126,7 @@ namespace laba1
                 bool b = true;
                 for (int j = i + 1; j < n; j++)
                 {
-                    if (string.Compare(arrayOfData[i].prizv, arrayOfData[j].prizv) > 0)
+                    if (arrayOfData[i].compare(arrayOfData[j]) > 0)
                     {
                         temp = arrayOfData[i];
                         arrayOfData[i] = arrayOfData[j];
@@ -132,25 +147,14 @@ namespace laba1
             {
                 b = false;
                 for (int j = 0; j < n - 1; j++)
-                {
-                    if (string.Compare(arrayOfData[j].prizv, arrayOfData[j + 1].prizv) > 0)
+                    if (arrayOfData[j].compare(arrayOfData[j+1]) > 0)
                     {
-                        temp = arrayOfData[j + 1];
-                        arrayOfData[j + 1] = arrayOfData[j];
-                        arrayOfData[j] = temp;
+                        swap(ref arrayOfData[j], ref arrayOfData[j - 1]);
                         b = true;
                     }
-                }
                 for (int j = n - 1; j > 0; j--)
-                {
-                    if (string.Compare(arrayOfData[j].prizv, arrayOfData[j - 1].prizv) < 0)
-                    {
-                        temp = arrayOfData[j];
-                        arrayOfData[j] = arrayOfData[j - 1];
-                        arrayOfData[j - 1] = temp;
-                        b = true;
-                    }
-                }
+                    if (arrayOfData[j].compare(arrayOfData[j - 1]) < 0)
+                        swap(ref arrayOfData[j], ref arrayOfData[j - 1]);
             } while (b);
             updateDataGrid();
         }
@@ -159,20 +163,14 @@ namespace laba1
         private void minElem_sort(object sender, EventArgs e)
         {
             int min;
-            for(int i = 0; i < n; i++)
+            for (int i = 0; i < n; i++)
             {
                 min = i;
-                for (int j=i+1;j<n;j++)
-                {
-                    if (String.Compare(arrayOfData[j].prizv, arrayOfData[min].prizv) < 0)
+                for (int j = i + 1; j < n; j++)
+                    if (arrayOfData[j].compare(arrayOfData[min]) < 0)
                         min = j;
-                }
                 if (min != i)
-                {
-                    temp = arrayOfData[i];
-                    arrayOfData[i] = arrayOfData[min];
-                    arrayOfData[min] = temp;
-                }
+                    swap(ref arrayOfData[i], ref arrayOfData[min]);
             }
             updateDataGrid();
         }
@@ -180,20 +178,54 @@ namespace laba1
         // сортування вставками (включеннями)
         private void inserts_sort(object sender, EventArgs e)
         {
-            for (int i = 0; i < n; i++)
-            {
-                info el = arrayOfData[i];
-                int j = i;
-                while (j > 0 && (string.Compare(arrayOfData[j - 1].prizv, el.prizv) > 0))
-                {
-                    temp = arrayOfData[j];
-                    arrayOfData[j] = arrayOfData[j - 1];
-                    arrayOfData[j - 1] = temp;
-                    j--;
-                }
-                arrayOfData[j] = el;
-            }
+            for (int i = 1; i < n; ++i)
+                for (int j = i; j > 0 && (arrayOfData[j].compare(arrayOfData[j - 1]) < 0); --j)
+                    swap(ref arrayOfData[j - 1], ref arrayOfData[j]);
+
             updateDataGrid();
+        }
+
+        // агоритм Шелла
+        private void shell_sort(object sender, EventArgs e)
+        {
+            for (int step = n / 2; step >= 1; step /= 2)
+                for (int i = step; i < n; ++i)
+                    for (int j = i; j > 0 && (arrayOfData[j].compare(arrayOfData[j - 1]) < 0); j-=step)
+                        swap(ref arrayOfData[j - 1], ref arrayOfData[j]);
+
+            updateDataGrid();
+        }
+
+        // швидке сортування
+        private void qsort_Click(object sender, EventArgs e)
+        {
+            qsort(arrayOfData, 0, n - 1);
+
+            updateDataGrid();
+        }
+
+        private void qsort(info []array, int start, int end)
+        {
+            if (start >= end)
+            {
+                return;
+            }
+
+            int left = start, right = end;
+            info middle = array[(left + right) / 2];
+            while (left <= right)
+            {
+                while (middle.compare(array[left]) > 0)
+                    left++;
+                while (middle.compare(array[right]) < 0)
+                    right--;
+
+                if (left <= right)
+                    swap(ref array[left++], ref array[right--]);
+            }
+
+            qsort(array, start, right);
+            qsort(array, left, end);
         }
     }
 }

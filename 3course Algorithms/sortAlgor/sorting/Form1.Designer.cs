@@ -41,14 +41,16 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(607, 116);
+            this.button1.Location = new System.Drawing.Point(605, 91);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(152, 38);
+            this.button1.Size = new System.Drawing.Size(152, 26);
             this.button1.TabIndex = 0;
             this.button1.Text = "buble sorting";
             this.button1.UseVisualStyleBackColor = true;
@@ -127,9 +129,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(607, 160);
+            this.button4.Location = new System.Drawing.Point(605, 135);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(152, 38);
+            this.button4.Size = new System.Drawing.Size(152, 26);
             this.button4.TabIndex = 0;
             this.button4.Text = "shake sorting";
             this.button4.UseVisualStyleBackColor = true;
@@ -137,9 +139,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(607, 204);
+            this.button5.Location = new System.Drawing.Point(605, 179);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(152, 38);
+            this.button5.Size = new System.Drawing.Size(152, 26);
             this.button5.TabIndex = 0;
             this.button5.Text = "min elem sorting";
             this.button5.UseVisualStyleBackColor = true;
@@ -147,13 +149,33 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(607, 248);
+            this.button6.Location = new System.Drawing.Point(605, 223);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(152, 38);
+            this.button6.Size = new System.Drawing.Size(152, 26);
             this.button6.TabIndex = 0;
             this.button6.Text = "inserts sorting";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.inserts_sort);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(605, 267);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(152, 26);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "Shell`s sorting";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.shell_sort);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(605, 308);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(152, 26);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "Qsort";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.qsort_Click);
             // 
             // Form1
             // 
@@ -163,6 +185,8 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -189,6 +213,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }
 
