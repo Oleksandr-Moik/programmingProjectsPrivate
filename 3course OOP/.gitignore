@@ -1,3 +1,4 @@
 #Gitignore in 3course/OOP
 #folder with pptx and other trash
 2019-2020*
+~*.DOC
