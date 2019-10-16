@@ -226,6 +226,7 @@ namespace laba1
         // сортування купою
         private void heap_sort(object sender, EventArgs e)
         {
+            // algorithms
             return;
         }
     }
