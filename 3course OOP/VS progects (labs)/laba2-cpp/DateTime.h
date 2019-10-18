@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 #include <iostream>
 #include <iomanip>
 #include <string>
 using namespace std;
 
+=======
+>>>>>>> 386cfae9f3a642fb72f665a933f3c73f0ffc7cc0
 class DateTime
 {
 private:
@@ -29,6 +32,17 @@ public:
 
 	bool operator&(DateTime);
 	bool operator!();
+<<<<<<< HEAD
 	operator bool();
 	string toString();
+=======
+	bool logic();
+	operator string() {
+		string result = "";
+
+
+
+		return result;
+	}
+>>>>>>> 386cfae9f3a642fb72f665a933f3c73f0ffc7cc0
 };

@@ -8,6 +8,7 @@ int main()
 	int n;
 	cout << "Enter count of dates:";
 	cin >> n;
+<<<<<<< HEAD
 	DateTime* timeObj = new DateTime[n + 1];
 	timeObj[0] = DateTime(1, 1, 2019);
 	for (int i = 1; i <= n; ++i)
@@ -36,5 +37,21 @@ int main()
 		cout << endl;
 	}
 
+=======
+	DateTime *ob=new DateTime[n];
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Enter date #" << i + 1 << "\n";
+		ob[i].inputDate();
+		cout << "Days to end this month: " << ob[i].countEndDays() << "\n";
+		DateTime tmp;
+		cout << "Date next day: ";
+		tmp.nextDay(ob[i]).showDate();
+		cout << "Date previous day: ";
+		tmp.previousDay(ob[i]).showDate();
+		cout << endl;
+	}
+	
+>>>>>>> 386cfae9f3a642fb72f665a933f3c73f0ffc7cc0
 	return 0;
 }
