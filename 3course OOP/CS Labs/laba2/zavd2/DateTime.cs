@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace zavd1
+namespace zavd2
 {
     class DateTime
     {
@@ -118,7 +118,46 @@ namespace zavd1
         }
         public void ShowDate()
         {
-            Console.WriteLine($"{day,2:D2}:{month,2:D2}:{year,4:D4}");
+            Console.WriteLine($"{day,2:D2}.{month,2:D2}.{year,4:D4}");
+        }
+
+        public string toString()
+        {
+            return String.Format($"{day,2:D2}.{month,2:D2}.{year,4:D4}");
+        }
+        public static bool operator &(DateTime a, DateTime b)
+        {
+            return false;
+        }
+        public static bool operator !(DateTime time)
+        {
+            if (time.day < 28) return true;
+            else
+            {
+                if (time.month == 2)
+                {
+                    if (((time.year % 4 == 0) && (time.year % 100 != 0)) || ((time.year % 4 == 0) && (time.year % 100 != 0) && (time.year % 400 == 0)))
+                        return (time.day == 29) ? false : true;
+                    else return (time.day == 28) ? false : true;
+                }
+                else if (((time.month <= 7) && (time.month % 2 == 1)) || ((time.month >= 8) && (time.month % 2 == 0)))
+                {
+                    return (time.day == 31) ? false : true;
+                }
+                else if ((time.month == 4) || (time.month == 6) || (time.month == 9) || (time.month == 11))
+                {
+                    return (time.day == 30) ? false : true;
+                }
+            }
+            return false;
+        }
+        public static bool operator true(DateTime time)
+        {
+            return (time.day == 1 && time.month == 1) ? true : false;
+        }
+        public static bool operator false(DateTime time)
+        {
+            return (!(time.day == 1 && time.month == 1)) ? false : true;
         }
 
     }

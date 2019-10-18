@@ -1,5 +1,8 @@
 ﻿#include "DateTime.h"
+
 #include <iostream>
+#include <iomanip>
+#include <string>
 using namespace std;
 
 DateTime::DateTime() :day(1), month(1), year(2009) {}
@@ -113,7 +116,7 @@ void DateTime::showDate() {
 }
 
 bool DateTime::operator&(DateTime obj) {
-	return ((day == obj.day) && (month == obj.month) && (year == obj.year))
+	return ((this->day == obj.day) && (this->month == obj.month) && (this->year == obj.year))
 		? true : false;
 }
 bool DateTime::operator!() {
@@ -133,6 +136,9 @@ bool DateTime::operator!() {
 		}
 	}
 }
-bool DateTime::logic() {
+DateTime::operator bool() {
 	return (day == 1 && month == 1) ? true : false;
+}
+string DateTime::toString() {
+	return to_string(day) + "." + to_string(month) + "." + to_string(year);
 }

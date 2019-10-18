@@ -1,3 +1,8 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
 class DateTime
 {
 private:
@@ -24,12 +29,6 @@ public:
 
 	bool operator&(DateTime);
 	bool operator!();
-	bool logic();
-	operator string() {
-		string result = "";
-
-
-
-		return result;
-	}
+	operator bool();
+	string toString();
 };
